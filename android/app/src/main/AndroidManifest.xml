@@ -3,6 +3,11 @@
    <application
         android:label="sendy_case_study"
         android:icon="@mipmap/ic_launcher">
+
+        <!-- Maps API Key -->
+         <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="YAIzaSyAVb_wEZ4-75PM728--DfWIm4FYYXVc2-E"/>
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
