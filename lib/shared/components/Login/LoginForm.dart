@@ -46,7 +46,7 @@ class _LoginFormState extends State<LoginForm> {
             setState(() {
               timer.cancel();
             });
-            Navigator.push(
+            Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (context) => const HomePage()),
             );

@@ -1,12 +1,12 @@
 # sendy_case_study
 
-A Flutter project.
+Sendy Flutter project.
 
 ## Getting Started
 
 This project can be run on Android, iOS and Web platforms.
 
-To run it simply create a launch.json file and copy the sample below:
+To run it simply create a launch.json file and copy the code snippet below:
 
 ```
 {
@@ -33,13 +33,13 @@ To run it simply create a launch.json file and copy the sample below:
 }
 ```
 
-***
+---
 
-***
+---
 
 ## Web Screenshots:
 
-1. Login Page 
+1. Login Page
 
 <img width="1127" alt="Login" src="https://user-images.githubusercontent.com/63927686/183986098-6dc6e2e7-2d7c-4f37-9ebe-bfeb5741bd0d.png">
 
@@ -51,10 +51,9 @@ To run it simply create a launch.json file and copy the sample below:
 
 <img width="1129" alt="SideNav" src="https://user-images.githubusercontent.com/63927686/183988791-a24133f3-f02a-4c76-bf32-028c8c954673.png">
 
-
 ## Android Screenshots:
 
-1. Login Page 
+1. Login Page
 
 ![Login](https://user-images.githubusercontent.com/63927686/183985677-2ca9b10a-ab30-4503-960a-4ef2612bddf5.png)
 
@@ -66,11 +65,11 @@ To run it simply create a launch.json file and copy the sample below:
 
 ![SideNav](https://user-images.githubusercontent.com/63927686/183985758-5231bbad-aac7-42c1-98e8-4749a6d6bd49.png)
 
-***
+---
 
 ## iOS Screenshots:
 
-1. Login Page 
+1. Login Page
 
 ![Login](https://user-images.githubusercontent.com/63927686/183987555-acc666cd-e52b-4801-ad0e-9cd8d7831542.png)
 
@@ -81,7 +80,3 @@ To run it simply create a launch.json file and copy the sample below:
 3. Navigation Drawer Page
 
 ![SideNav](https://user-images.githubusercontent.com/63927686/183987530-3bcaa00f-eaf8-4d5f-bbf8-3af57f779b39.png)
-
-
-
-
