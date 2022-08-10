@@ -2,7 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:sendy_case_study/shared/Colors.dart';
 
 import '../domain/value_objects/app_strings.dart';
 import '../shared/components/Home/EnterPickup.dart';
@@ -21,10 +24,55 @@ class _HomePageState extends State<HomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   Completer<GoogleMapController> _controller = Completer();
 
-  static final CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(-1.299263152617537, 36.77293016918341),
-    zoom: 14,
-  );
+  late LatLng currentLatLng;
+
+  /// Determine the current position of the device.
+  /// When the location services are not enabled or permissions
+  /// are denied the `Future` will return an error.
+  Future<Position> _determinePosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    // Test if location services are enabled.
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      // Location services are not enabled don't continue
+      // accessing the position and request users of the
+      // App to enable the location services.
+      return Future.error('Location services are disabled.');
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        // Permissions are denied, next time you could try
+        // requesting permissions again (this is also where
+        // Android's shouldShowRequestPermissionRationale
+        // returned true.
+
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(locationPermissionDeniedText),
+        ));
+
+        return Future.error(locationPermissionDeniedText);
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      // Permissions are denied forever, handle appropriately.
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(locationPermissionPermanentlyDeniedText),
+      ));
+      return Future.error(locationPermissionPermanentlyDeniedText);
+    }
+
+    // When we reach here, permissions are granted and we can
+    // continue accessing the position of the device.
+    Position position = await Geolocator.getCurrentPosition();
+    currentLatLng = LatLng(position.latitude, position.longitude);
+    return position;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,43 +84,66 @@ class _HomePageState extends State<HomePage> {
 
     return new Scaffold(
       key: _scaffoldKey,
-      body: Stack(
-        children: <Widget>[
-          // google map
-          GoogleMap(
-            padding: EdgeInsets.only(bottom: 42),
-            mapType: MapType.normal,
-            initialCameraPosition: _kGooglePlex,
-            onMapCreated: (GoogleMapController controller) {
-              controller.setMapStyle(_mapStyle);
-              _controller.complete(controller);
-            },
-          ),
-
-          // hamburger menu
-          Positioned(
-              top: 40,
-              left: 10,
-              child: IconButton(
-                icon: Icon(CupertinoIcons.line_horizontal_3),
-                onPressed: () => _scaffoldKey.currentState?.openDrawer(),
-              )),
-
-          // enter pickup
-          width >= 500
-              ? Positioned(
-                  top: 120,
-                  left: 100,
-                  child: Center(
-                    child: SizedBox(
-                      width: 400,
-                      child: EnterPickup(),
-                    ),
+      body: FutureBuilder<Position>(
+          future: _determinePosition(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Stack(
+                children: <Widget>[
+                  // google map
+                  GoogleMap(
+                    padding: EdgeInsets.only(bottom: 42, top: 30),
+                    mapType: MapType.normal,
+                    initialCameraPosition:
+                        CameraPosition(target: currentLatLng, zoom: 17),
+                    onMapCreated: (GoogleMapController controller) {
+                      controller.setMapStyle(_mapStyle);
+                      controller.animateCamera(
+                        CameraUpdate.newCameraPosition(
+                          CameraPosition(target: currentLatLng, zoom: 17),
+                        ),
+                      );
+                      _controller.complete(controller);
+                    },
+                    myLocationEnabled: true,
                   ),
-                )
-              : EnterPickup(),
-        ],
-      ),
+
+                  // hamburger menu
+                  Positioned(
+                      top: 40,
+                      left: 10,
+                      child: IconButton(
+                        icon: Icon(
+                          CupertinoIcons.line_horizontal_3,
+                          color: Colors.black,
+                        ),
+                        onPressed: () =>
+                            _scaffoldKey.currentState?.openDrawer(),
+                      )),
+
+                  // enter pickup
+                  width >= 500
+                      ? Positioned(
+                          top: 120,
+                          left: 100,
+                          child: Center(
+                            child: SizedBox(
+                              width: 400,
+                              child: EnterPickup(),
+                            ),
+                          ),
+                        )
+                      : EnterPickup(),
+                ],
+              );
+            }
+            return Center(
+              child: LoadingAnimationWidget.beat(
+                color: AppColors.primaryColor,
+                size: 24,
+              ),
+            );
+          }),
       drawer: Drawer(
         backgroundColor: Colors.white,
         child: Column(
