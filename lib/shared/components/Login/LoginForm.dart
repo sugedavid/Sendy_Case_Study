@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../../../domain/value_objects/app_strings.dart';
 import '../../../presentation/HomePage.dart';
@@ -15,11 +18,46 @@ class LoginForm extends StatefulWidget {
 
 class _LoginFormState extends State<LoginForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool showLoader = false;
+  late Timer _timer;
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final _emailTextController = TextEditingController();
     final _passwordTextController = TextEditingController();
+
+    int _start = 2;
+
+    void startTimer() {
+      showLoader = true;
+      const oneSec = const Duration(seconds: 1);
+
+      _timer = new Timer.periodic(
+        oneSec,
+        (Timer timer) {
+          if (_start == 0) {
+            showLoader = false;
+            setState(() {
+              timer.cancel();
+            });
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const HomePage()),
+            );
+          } else {
+            setState(() {
+              _start--;
+            });
+          }
+        },
+      );
+    }
 
     return SingleChildScrollView(
       child: Form(
@@ -109,26 +147,25 @@ class _LoginFormState extends State<LoginForm> {
                 onPressed: () {
                   // validate form
                   if (_formKey.currentState!.validate()) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const HomePage()),
-                    );
+                    startTimer();
                   }
                 },
-                child: Text(
-                  loginText.toUpperCase(),
-                  style: TextStyle(
-                    fontSize: 14,
-                  ),
-                ),
+                child: (showLoader == true)
+                    ? Center(
+                        child: LoadingAnimationWidget.beat(
+                          color: Colors.white,
+                          size: 24,
+                        ),
+                      )
+                    : Text(
+                        loginText.toUpperCase(),
+                        style: TextStyle(
+                          fontSize: 14,
+                        ),
+                      ),
               ),
             ),
-            // Center(
-            //   child: LoadingAnimationWidget.beat(
-            //     color: AppColors.primaryColor,
-            //     size: 24,
-            //   ),
-            // ),
+
             SizedBox(
               height: 30,
             ),

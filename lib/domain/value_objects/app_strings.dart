@@ -16,3 +16,6 @@ const String promotionsText = 'Promotions';
 const String helpText = 'Help';
 const String appVersionText = 'Sendy v 0.0.1';
 const String userText = 'Suge David';
+const String locationPermissionDeniedText = 'Location permissions are denied';
+const String locationPermissionPermanentlyDeniedText =
+    'Location permissions are permanently denied, we cannot request permissions';
