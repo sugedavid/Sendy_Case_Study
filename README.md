@@ -35,7 +35,24 @@ To run it simply create a launch.json file and copy the sample below:
 
 ***
 
-Android Screenshots:
+***
+
+## Web Screenshots:
+
+1. Login Page 
+
+<img width="1127" alt="Login" src="https://user-images.githubusercontent.com/63927686/183986098-6dc6e2e7-2d7c-4f37-9ebe-bfeb5741bd0d.png">
+
+2. Home Page
+
+<img width="1131" alt="Home" src="https://user-images.githubusercontent.com/63927686/183986143-f2e68009-c7c1-49e7-8cb3-f2b33f31e3e3.png">
+
+3. Navigation Drawer Page
+
+<img width="1129" alt="SideNav" src="https://user-images.githubusercontent.com/63927686/183988791-a24133f3-f02a-4c76-bf32-028c8c954673.png">
+
+
+## Android Screenshots:
 
 1. Login Page 
 
@@ -51,7 +68,7 @@ Android Screenshots:
 
 ***
 
-iOS Screenshots:
+## iOS Screenshots:
 
 1. Login Page 
 
@@ -65,21 +82,6 @@ iOS Screenshots:
 
 ![SideNav](https://user-images.githubusercontent.com/63927686/183987530-3bcaa00f-eaf8-4d5f-bbf8-3af57f779b39.png)
 
-***
-
-Web Screenshots:
-
-1. Login Page 
-
-<img width="1127" alt="Login" src="https://user-images.githubusercontent.com/63927686/183986098-6dc6e2e7-2d7c-4f37-9ebe-bfeb5741bd0d.png">
-
-2. Home Page
-
-<img width="1131" alt="Home" src="https://user-images.githubusercontent.com/63927686/183986143-f2e68009-c7c1-49e7-8cb3-f2b33f31e3e3.png">
-
-3. Navigation Drawer Page
-
-<img width="1127" alt="Login" src="https://user-images.githubusercontent.com/63927686/183986185-e0382278-6063-4f65-9e91-2e290cd698a5.png">
 
 
 
