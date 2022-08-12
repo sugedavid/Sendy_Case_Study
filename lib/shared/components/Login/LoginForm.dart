@@ -18,6 +18,8 @@ class LoginForm extends StatefulWidget {
 
 class _LoginFormState extends State<LoginForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final _emailTextController = TextEditingController();
+  final _passwordTextController = TextEditingController();
   bool showLoader = false;
   late Timer _timer;
 
@@ -29,9 +31,6 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
-    final _emailTextController = TextEditingController();
-    final _passwordTextController = TextEditingController();
-
     int _start = 2;
 
     void startTimer() {
