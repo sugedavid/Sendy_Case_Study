@@ -149,7 +149,7 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: [
             Expanded(
-              flex: 5,
+              flex: 7,
               child: ListView(
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,

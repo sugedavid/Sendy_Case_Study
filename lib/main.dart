@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sendy_case_study/presentation/LogInPage.dart';
+import 'package:sendy_case_study/presentation/WelcomePage.dart';
 
 import 'domain/value_objects/app_strings.dart';
 
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: appName,
       theme: _buildTheme(Brightness.light),
-      home: LoginPage(),
+      home: WelcomePage(),
     );
   }
 
