@@ -2,6 +2,7 @@ const String appName = 'Sendy';
 
 // login page
 const String loginText = 'Log In';
+const String signUpText = 'Sign up';
 const String loginTitle = 'Welcome back to Sendy';
 const String loginBody = 'Please fill in the details below to log in.';
 const String emailText = 'Email';
