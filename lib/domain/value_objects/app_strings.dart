@@ -1,3 +1,5 @@
+const String appName = 'Sendy';
+
 // login page
 const String loginText = 'Log In';
 const String loginTitle = 'Welcome back to Sendy';
