@@ -51,6 +51,7 @@ class _WelcomePageState extends State<WelcomePage> {
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      backgroundColor: width >= 500 ? null : Colors.white,
       body: SafeArea(
         child: width >= 500
             ? Padding(

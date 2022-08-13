@@ -41,13 +41,11 @@ To run it simply create a launch.json file and copy the code snippet below:
 
 1. Welcome Page
 
-<img width="1434" alt="Screenshot 2022-08-12 at 23 48 37" src="https://user-images.githubusercontent.com/63927686/184443206-cd836915-f989-4934-8033-ee9764aeacb9.png">
-
+<img width="1436" alt="Screenshot 2022-08-13 at 10 34 55" src="https://user-images.githubusercontent.com/63927686/184474144-ba0c7cca-47b8-4476-bbd5-3f6a07b52468.png">
 
 2. Login Page
 
 <img width="1432" alt="Screenshot 2022-08-12 at 23 49 09" src="https://user-images.githubusercontent.com/63927686/184443143-37aba2fa-b642-409e-a7c0-d2e508ed0b7a.png">
-
 
 3. Home Page
 
